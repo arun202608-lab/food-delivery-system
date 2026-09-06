@@ -14,17 +14,14 @@ const port = process.env.PORT || 4000
 app.use(express.json())
 
 app.use(cors({
-  origin: [
-    "https://food-delivery-system-noig-nmog7mpzm-arun202608-labs-projects.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "token"],
-  credentials: true
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "token", "Authorization"]
 }))
 
-app.options("*", cors())
-
-connectDB()
+app.get("/", (req, res) => {
+    res.status(200).send("API Working Now")
+})
 
 app.use("/api/food", foodRouter)
 app.use("/images", express.static("uploads"))
@@ -32,10 +29,16 @@ app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 
-app.get("/", (req, res) => {
-  res.send("API Working Now")
-})
+const startServer = async () => {
+    try {
+        await connectDB()
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
-})
+        app.listen(port, "0.0.0.0", () => {
+            console.log(`Server running on port ${port}`)
+        })
+    } catch (error) {
+        console.log("Database connection failed:", error)
+    }
+}
+
+startServer()
