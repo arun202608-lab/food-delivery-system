@@ -20,9 +20,8 @@ app.use(cors({
 }))
 
 app.get("/", (req, res) => {
-    res.status(200).send("API Working Now")
+    res.send("API Working Now")
 })
-
 app.use("/api/food", foodRouter)
 app.use("/images", express.static("uploads"))
 app.use("/api/user", userRouter)
