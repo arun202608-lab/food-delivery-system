@@ -4,7 +4,7 @@ import {assets} from "../../assets/assets"
 const Navbar = () => {
   return (
     <div className='navbar'>
-      <img src={assets.logo} alt="" className="logo" />
+      <a href="food-delivery-system-bice.vercel.app"><img src={assets.logo} alt="" className="logo" /></a>
       <img src={assets.profile_image} alt="" className="profile" />
     </div>
   )
