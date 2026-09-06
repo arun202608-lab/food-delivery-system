@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const url = "http://localhost:4000";
+ const url = "https://food-delivery-system-wcvv.onrender.com";
   const [CartItem, setCartItem] = useState({});
   const [token, setToken] = useState(() => {
     return Cookies.get("token") || "";
